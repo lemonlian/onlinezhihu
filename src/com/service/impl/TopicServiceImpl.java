@@ -50,9 +50,9 @@ public class TopicServiceImpl implements TopicService {
             String topicContent = request.getParameter( "topicContent" );
             String userId = String.valueOf( user.getUserId() );
             String topicPublshTime = new IPTimeStamp().getTimeStamp();
-            if (topicPublshTime!=null){
-               request.getSession().setAttribute( "topicPublshTime",topicPublshTime );
-            }
+//            if (topicPublshTime!=null){
+//               request.getSession().setAttribute( "topicPublshTime",topicPublshTime );
+//            }
             String topicModifyTime =new IPTimeStamp().getTimeStamp();
             if (checkParam( boardId )) {
                 return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "boardId传入的参数为空", null );
@@ -74,7 +74,7 @@ public class TopicServiceImpl implements TopicService {
         }
         int result = 0;
         try {
-            result = topicDAO.addTopic( topic );
+            result = topicDAO.addTopic( topic ,user.getUserId());
             if (result == 1)
                 return new CommonUtil().constructResponse( EnumUtil.OK, "添加成功", null );
             else
@@ -248,6 +248,90 @@ public class TopicServiceImpl implements TopicService {
         List <Map <String, String>> result = new ArrayList <Map <String, String>>();
         try {
             result = topicDAO.getTopicById( Integer.parseInt( topicId ) );
+            if (result == null)
+                return new CommonUtil().constructResponse( EnumUtil.NO_DATA, "数据为空", null );
+            else
+                return new CommonUtil().constructResponse( EnumUtil.OK, "获取信息成功", result );
+        } catch (SQLException e) {
+            return new CommonUtil().constructResponse( EnumUtil.SQL_FAILURE, "数据库处理异常", null );
+        }
+    }
+
+    @Override
+    public JSONObject getNewestTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setCharacterEncoding( "utf-8" );
+            response.setCharacterEncoding( "utf-8" );
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        List <Map <String, String>> result = new ArrayList <Map <String, String>>();
+        try {
+            result = topicDAO.getNewestTopic();
+            if (result == null)
+                return new CommonUtil().constructResponse( EnumUtil.NO_DATA, "数据为空", null );
+            else
+                return new CommonUtil().constructResponse( EnumUtil.OK, "获取信息成功", result );
+        } catch (SQLException e) {
+            return new CommonUtil().constructResponse( EnumUtil.SQL_FAILURE, "数据库处理异常", null );
+        }
+    }
+
+    @Override
+    public JSONObject collectTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setCharacterEncoding( "utf-8" );
+            response.setCharacterEncoding( "utf-8" );
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        User user = (User) request.getSession().getAttribute( "user" );
+        String topicId = null;
+        if (user == null)
+            return new CommonUtil().constructResponse( EnumUtil.NOT_LOGIN, "用户未登录", null );
+        try {
+            topicId = request.getParameter( "topicId" );
+            if (checkParam( topicId )) {
+                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "topicId传入的参数为空", null );
+            }
+        } catch (Exception e) {
+            return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "无参数匹配或参数匹配异常", null );
+        }
+        int result = 0;
+        try {
+            result = topicDAO.collectTopic( Integer.parseInt( topicId ), user.getUserId() );
+            if (result == 1)
+                return new CommonUtil().constructResponse( EnumUtil.OK, "收藏成功", null );
+            else
+                return new CommonUtil().constructResponse( EnumUtil.FAILURE, "收藏失败", null );
+        } catch (SQLException e) {
+            return new CommonUtil().constructResponse( EnumUtil.SQL_FAILURE, "数据库处理异常", null );
+        }
+    }
+
+    @Override
+    public JSONObject seekTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setCharacterEncoding( "utf-8" );
+            response.setCharacterEncoding( "utf-8" );
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        User user = (User) request.getSession().getAttribute( "user" );
+        String keyWord = null;
+        if (user == null)
+            return new CommonUtil().constructResponse( EnumUtil.NOT_LOGIN, "用户未登录", null );
+        try {
+            keyWord = request.getParameter( "keyWord" );
+            if (checkParam( keyWord )) {
+                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "keyWord传入的参数为空", null );
+            }
+        } catch (Exception e) {
+            return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "无参数匹配或参数匹配异常", null );
+        }
+        List <Map <String, String>> result = new ArrayList <Map <String, String>>();
+        try {
+            result = topicDAO.seekTopic( keyWord );
             if (result == null)
                 return new CommonUtil().constructResponse( EnumUtil.NO_DATA, "数据为空", null );
             else

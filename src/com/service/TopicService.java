@@ -61,4 +61,31 @@ public interface TopicService {
      * @throws SQLException
      */
     public JSONObject getTopicById(HttpServletRequest request, HttpServletResponse response) throws SQLException;
+
+    /**
+     * 得到最新的话题
+     * @param request
+     * @param response
+     * @return
+     * @throws SQLException
+     */
+    public JSONObject getNewestTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException;
+
+    /**
+     * 收藏帖子
+     * @param request
+     * @param response
+     * @return
+     * @throws SQLException
+     */
+    public JSONObject collectTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException;
+
+    /**
+     * 模糊查询帖子
+     * @param request
+     * @param response
+     * @return
+     * @throws SQLException
+     */
+    public JSONObject seekTopic(HttpServletRequest request, HttpServletResponse response) throws SQLException;
 }

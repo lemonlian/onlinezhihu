@@ -16,11 +16,15 @@ public class TestTopicDAO {
         topic.setUserId( 1 );
         topic.setTopicModifytime( new IPTimeStamp().getTimeStamp() );
         topic.setTopicPublishtime( new IPTimeStamp().getTimeStamp() );
+        String keyWord = "成都";
         // System.out.println("发布话题："+ topicDAO.addTopic( topic ));
         //System.out.println("重新编辑话题"+topicDAO.updateTopic( topic ));
        // System.out.println("删除话题："+topicDAO.deleteTopic( topic.getTopicId()));
         //System.out.println("得到所有的话题"+topicDAO.getAllTopicDetailed());
         //System.out.println("得到某个版块下的话题："+topicDAO.getTopicDetailedById( topic.getBoardId() ));
-        System.out.println("查看某一个话题的具体信息："+topicDAO.getTopicById( 1 ));
+       // System.out.println("查看某一个话题的具体信息："+topicDAO.getTopicById( 1 ));
+       // System.out.println("得到最新的帖子"+topicDAO.getNewestTopic());
+       // System.out.println("收藏帖子"+topicDAO.collectTopic( 3,11 ));
+        System.out.println("搜索"+topicDAO.seekTopic( keyWord ));
     }
 }

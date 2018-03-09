@@ -23,13 +23,12 @@ public class BoardDAOImpl implements IBoardDAO {
     @Override
     public int addBoard(Board board) throws SQLException {
         int flag = 0;
-        String addBoardSql = "insert into board(board_name,board_category,board_description) values(?,?,?)";
+        String addBoardSql = "insert into board(board_name,board_description) values(?,?)";
         try {
             System.out.println(addBoardSql);
             psmt = con.prepareStatement( addBoardSql );
             psmt.setString( 1,board.getBoardName() );
-            psmt.setString( 2,board.getBoardCategory() );
-            psmt.setString( 3,board.getBoardDescription());
+            psmt.setString( 2,board.getBoardDescription());
             int result = psmt.executeUpdate();
             if (result>0){
                 flag = 1;
@@ -45,13 +44,12 @@ public class BoardDAOImpl implements IBoardDAO {
     @Override
     public int updateBoard(Board board) throws SQLException {
         int flag = 0;
-        String updateBoardSql = "update board set board_name=?,board_category=?,board_description=? where board_id = ?";
+        String updateBoardSql = "update board set board_name=?,board_description=? where board_id = ?";
         try {
             psmt = con.prepareStatement( updateBoardSql );
             psmt.setString( 1,board.getBoardName() );
-            psmt.setString( 2,board.getBoardCategory() );
-            psmt.setString( 3,board.getBoardDescription());
-            psmt.setString( 4, String.valueOf( board.getBoardId() ) );
+            psmt.setString( 2,board.getBoardDescription());
+            psmt.setString( 3, String.valueOf( board.getBoardId() ) );
             int result = psmt.executeUpdate();
             if (result>0){
                 flag = 1;
@@ -95,7 +93,6 @@ public class BoardDAOImpl implements IBoardDAO {
                 map = new HashMap <String, String>(  );
                 map.put( "boardId", String.valueOf( rs.getInt( "board_id" ) ) );
                 map.put( "boardName",rs.getString( "board_name" ) );
-                map.put( "boardCategory",rs.getString( "board_category" ) );
                 map.put( "boardDescription",rs.getString( "board_description" ) );
                 list.add( map );
             }

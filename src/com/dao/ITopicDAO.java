@@ -13,7 +13,7 @@ public interface ITopicDAO  {
      * @return
      * @throws SQLException
      */
-    public int addTopic(Topic topic) throws SQLException;
+    public int addTopic(Topic topic,int userId) throws SQLException;
 
     /**
      * 更新话题
@@ -54,5 +54,28 @@ public interface ITopicDAO  {
      */
     public List<Map<String,String>> getTopicById(int topicId) throws SQLException;
 
+    /**
+     * 得到最新的帖子
+     * @return
+     * @throws SQLException
+     */
+    public List<Map<String,String>> getNewestTopic() throws SQLException;
+
+    /**
+     * 收藏帖子
+     * @param topicId
+     * @param userId
+     * @return
+     * @throws SQLException
+     */
+    public  int collectTopic(int topicId,int userId) throws SQLException;
+
+    /**
+     * 通过模糊查询搜索相关的帖子
+     * @param keyWord
+     * @return
+     * @throws SQLException
+     */
+    public List<Map<String,String>> seekTopic(String keyWord) throws SQLException;
 
 }

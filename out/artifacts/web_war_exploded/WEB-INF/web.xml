@@ -154,6 +154,30 @@
         <servlet-name>GetTopicByIdServlet</servlet-name>
         <url-pattern>/topic/GetTopicByIdServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetNewTopicServlet</servlet-name>
+        <servlet-class>com.controller.topic.GetNewTopicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetNewTopicServlet</servlet-name>
+        <url-pattern>/topic/GetNewTopicServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CollecTopicServlet</servlet-name>
+        <servlet-class>com.controller.topic.CollecTopicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CollecTopicServlet</servlet-name>
+        <url-pattern>/topic/CollecTopicServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SeekTopicServlet</servlet-name>
+        <servlet-class>com.controller.topic.SeekTopicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeekTopicServlet</servlet-name>
+        <url-pattern>/topic/SeekTopicServlet</url-pattern>
+    </servlet-mapping>
     <!--回复帖子接口的配置-->
     <servlet>
         <servlet-name>CreateReplyServlet</servlet-name>
