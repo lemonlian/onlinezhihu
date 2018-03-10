@@ -86,13 +86,13 @@ public class ReplyDAOImpl implements IReplyDAO{
     }
 
     @Override
-    public List<Map<String,String>> getReplyDetailedById(int replyId) throws SQLException{
+    public List<Map<String,String>> getReplyDetailedById(int topicId) throws SQLException{
        List<Map<String,String>> list  = new ArrayList <>(  );
        Map<String,String> map = null;
-       String  getReplyDetailedByIdSql = "select * from reply where reply_id = ?  ";
+       String  getReplyDetailedByIdSql = "select * from reply where topic_id = ?  ";
         try{
             psmt = con.prepareStatement( getReplyDetailedByIdSql);
-            psmt.setInt( 1,replyId );
+            psmt.setInt( 1,topicId );
            rs = psmt.executeQuery();
            while (rs.next()){
                map = new HashMap <>(  );

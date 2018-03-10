@@ -29,7 +29,7 @@ public class TopicDAOImpl implements ITopicDAO {
         String addTopicSql = "insert into topic(board_id,topic_title,topic_content,user_id,topic_publishtime,topic_modifytime) values(?,?,?,?,?,?)";
         try {
             psmt = con.prepareStatement( addTopicSql );
-            psmt.setInt( 1, topic.getBoardId() );
+            psmt.setInt( 1, 1 );
             psmt.setString( 2, topic.getTopicTitle() );
             psmt.setString( 3, topic.getTopicContent() );
             psmt.setInt( 4, userId );

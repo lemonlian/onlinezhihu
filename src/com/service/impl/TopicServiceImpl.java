@@ -45,7 +45,7 @@ public class TopicServiceImpl implements TopicService {
         if (user == null)
             return new CommonUtil().constructResponse( EnumUtil.NOT_LOGIN, "用户未登录", null );
         try {
-            String boardId = request.getParameter( "boardId" );
+           // String boardId = request.getParameter( "boardId" );
             String topicTitle = request.getParameter( "topicTitle" );
             String topicContent = request.getParameter( "topicContent" );
             String userId = String.valueOf( user.getUserId() );
@@ -54,9 +54,9 @@ public class TopicServiceImpl implements TopicService {
 //               request.getSession().setAttribute( "topicPublshTime",topicPublshTime );
 //            }
             String topicModifyTime =new IPTimeStamp().getTimeStamp();
-            if (checkParam( boardId )) {
-                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "boardId传入的参数为空", null );
-            }
+//            if (checkParam( boardId )) {
+//                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "boardId传入的参数为空", null );
+//            }
             if (checkParam( topicTitle )) {
                 return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "topicTitle传入的参数为空", null );
             }
@@ -66,7 +66,7 @@ public class TopicServiceImpl implements TopicService {
             if (checkParam( userId )) {
                 return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "userId传入的参数为空", null );
             }
-            topic.setBoardId( Integer.parseInt( boardId ) );
+            //topic.setBoardId( Integer.parseInt( boardId ) );
             topic.setTopicTitle( topicTitle );
             topic.setTopicContent( topicContent );
         } catch (Exception e) {

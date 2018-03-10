@@ -176,15 +176,15 @@ public class ReplyServiceImpl implements ReplyService {
         if (user == null)
             return new CommonUtil().constructResponse( EnumUtil.NOT_LOGIN, "用户未登录", null );
         try {
-            String replyId = req.getParameter( "replyId" );
-            if (checkParam(replyId)) {
-                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "replyId传入的参数为空", null );
+            String topicId = req.getParameter( "topicId" );
+            if (checkParam(topicId)) {
+                return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, "topicId传入的参数为空", null );
             }
             Reply reply = new Reply();
             List<Map<String ,String>> result = new ArrayList <>(  );
-            reply.setReplyId( Integer.parseInt( replyId ) );
+            reply.setReplyId( Integer.parseInt( topicId ) );
             try {
-                result = replyDAO.getReplyDetailedById(Integer.parseInt( replyId ));
+                result = replyDAO.getReplyDetailedById(Integer.parseInt(topicId ));
                 if(result !=null)
                     return new CommonUtil().constructResponse(EnumUtil.OK, "获得数据成功", result);
                 else

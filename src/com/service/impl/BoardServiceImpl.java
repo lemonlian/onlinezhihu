@@ -58,7 +58,6 @@ public class BoardServiceImpl implements BoardService {
                 return new CommonUtil().constructResponse( EnumUtil.PARAM_ERROR, " boardDescription 传入的参数为空", null );
             }
             board.setBoardName( boardName );
-            board.setBoardCategory(boardCategory);
             board.setBoardDescription( boardDescription );
            int result = 0;
             try {
@@ -107,7 +106,6 @@ public class BoardServiceImpl implements BoardService {
             }
             board.setBoardId( Integer.parseInt( boardId )    );
             board.setBoardName( boardName );
-            board.setBoardCategory(boardCategory);
             board.setBoardDescription( boardDescription );
             int result = 0;
             try {

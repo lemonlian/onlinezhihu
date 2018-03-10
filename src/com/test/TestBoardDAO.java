@@ -12,7 +12,6 @@ public class TestBoardDAO {
         BoardDAOImpl boardDAO = new BoardDAOImpl();
         board1.setBoardId( 3 );
         board1.setBoardName( "生活" );
-        board1.setBoardCategory( "人生" );
         board1.setBoardDescription( "这是一个描述生活的小话题" );
         //System.out.println(boardDAO.addBoard( board1 ));
         //System.out.println(boardDAO.updateBoard( board1 ));

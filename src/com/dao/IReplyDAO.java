@@ -34,9 +34,9 @@ public interface IReplyDAO {
 
     /**
      * 获得回复的具体信息
-     * @param replyId
+     * @param topicId
      * @return
      * @throws SQLException
      */
-    public List<Map<String,String>> getReplyDetailedById(int replyId) throws SQLException;
+    public List<Map<String,String>> getReplyDetailedById(int topicId) throws SQLException;
 }
